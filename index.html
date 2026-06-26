@@ -3,661 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pranit Pisal | Cloud & DevOps Engineer</title>
+    <title>Pranit Pisal | DevOps & Cloud Engineer</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;800&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none; /* Custom cursor */
-        }
-
         :root {
-            --bg-dark: #050505;
-            --bg-panel: rgba(15, 23, 42, 0.6);
-            --primary-glow: #00ffcc;
-            --secondary-glow: #bc13fe;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --terminal-green: #00ff66;
-            --font-mono: 'Fira Code', monospace;
-            --font-sans: 'Inter', sans-serif;
+            --bg-dark: #050505; --bg-panel: rgba(15, 23, 42, 0.6);
+            --primary-glow: #00ffcc; --secondary-glow: #bc13fe;
+            --text-main: #f8fafc; --text-muted: #94a3b8;
+            --terminal-green: #00ff66; --font-mono: 'Fira Code', monospace;
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: var(--font-sans);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Custom Cursor */
-        .cursor-dot, .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--primary-glow);
-        }
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--secondary-glow);
-            transition: width 0.2s, height 0.2s, border-color 0.2s;
-        }
-        
-        /* Animated Tech Grid Background */
-        .cyber-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: 
-                linear-gradient(to right, rgba(0, 255, 204, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(188, 19, 254, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(50px) translateZ(-200px); }
-        }
-
-        /* Premium Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 3rem;
-            z-index: 1000;
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            font-family: var(--font-mono);
-            background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            font-family: var(--font-mono);
-            text-transform: lowercase;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::before {
-            content: '/>';
-            opacity: 0;
-            color: var(--primary-glow);
-            position: absolute;
-            right: -20px;
-            transition: 0.3s;
-        }
-        
-        .nav-links a:hover::before {
-            opacity: 1;
-            right: -25px;
-        }
-        .nav-links a:hover {
-            color: var(--primary-glow);
-            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-            padding: 0 2rem;
-            z-index: 1;
-            margin-top: 5rem;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: rgba(0, 255, 204, 0.05);
-            border: 1px solid var(--primary-glow);
-            border-radius: 4px;
-            color: var(--primary-glow);
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            letter-spacing: -2px;
-        }
-
-        .hero-gradient {
-            background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-        }
-
-        /* Interactive Terminal */
-        .terminal {
-            background: rgba(10, 10, 15, 0.9);
-            border: 1px solid rgba(0, 255, 204, 0.3);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 0 auto;
-            max-width: 700px;
-            text-align: left;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(188, 19, 254, 0.1);
-        }
-
-        .terminal-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .terminal-dots div {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-            display: inline-block;
-        }
-        .dot-r { background: #ff5f56; }
-        .dot-y { background: #ffbd2e; }
-        .dot-g { background: #27c93f; }
-
-        .terminal-content {
-            font-family: var(--font-mono);
-            color: var(--terminal-green);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            min-height: 120px;
-        }
-
-        .cursor-blink {
-            display: inline-block;
-            width: 10px;
-            height: 1.2em;
-            background-color: var(--primary-glow);
-            vertical-align: middle;
-            animation: blink 1s step-end infinite;
-        }
-
+        body { background: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .navbar { position: fixed; top: 0; width: 100%; padding: 1.5rem 3rem; background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0, 255, 204, 0.1); display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: 800; font-family: var(--font-mono); background: linear-gradient(135deg, var(--primary-glow), var(--secondary-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; font-family: var(--font-mono); transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary-glow); }
+        .hero { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+        .terminal { background: rgba(10, 10, 15, 0.9); border: 1px solid rgba(0, 255, 204, 0.3); border-radius: 8px; padding: 2rem; max-width: 700px; width: 100%; margin-top: 2rem; text-align: left; }
+        .cursor-blink { display: inline-block; width: 10px; height: 1.2em; background-color: var(--primary-glow); animation: blink 1s step-end infinite; }
         @keyframes blink { 50% { opacity: 0; } }
-
-        /* Sections General */
-        section {
-            padding: 100px 3rem;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-align: center;
-            letter-spacing: -1px;
-        }
-
-        .section-subtitle {
-            color: var(--text-muted);
-            text-align: center;
-            margin-bottom: 4rem;
-            font-family: var(--font-mono);
-        }
-
-        /* 3D Glassmorphism Cards */
-        .glass-card {
-            background: var(--bg-panel);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 2.5rem;
-            backdrop-filter: blur(10px);
-            transform-style: preserve-3d;
-            transform: perspective(1000px);
-            transition: border-color 0.3s;
-        }
-
-        .glass-card:hover {
-            border-color: rgba(0, 255, 204, 0.4);
-        }
-
-        /* Experience Timeline */
-        .timeline {
-            max-width: 900px;
-            margin: 0 auto;
-            border-left: 2px solid rgba(0, 255, 204, 0.2);
-            padding-left: 2rem;
-        }
-
-        .timeline-item {
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.4rem;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            background: var(--bg-dark);
-            border: 2px solid var(--primary-glow);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--primary-glow);
-        }
-
-        .timeline-date {
-            font-family: var(--font-mono);
-            color: var(--secondary-glow);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-role {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .timeline-company {
-            color: var(--primary-glow);
-            margin-bottom: 1rem;
-            font-family: var(--font-mono);
-        }
-
-        .timeline-highlights li {
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-            margin-left: 1.5rem;
-            list-style-type: square;
-        }
-        
-        .timeline-highlights li::marker {
-            color: var(--primary-glow);
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .skill-tag {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            margin: 0.3rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            transition: 0.3s;
-        }
-
-        .skill-tag:hover {
-            border-color: var(--secondary-glow);
-            color: var(--secondary-glow);
-            box-shadow: 0 0 15px rgba(188, 19, 254, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .project-links a {
-            display: inline-block;
-            margin-top: 1.5rem;
-            margin-right: 1rem;
-            padding: 0.5rem 1.2rem;
-            background: transparent;
-            border: 1px solid var(--primary-glow);
-            color: var(--primary-glow);
-            text-decoration: none;
-            border-radius: 4px;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            transition: 0.3s;
-        }
-
-        .project-links a:hover {
-            background: var(--primary-glow);
-            color: var(--bg-dark);
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding: 3rem;
-            text-align: center;
-            font-family: var(--font-mono);
-            color: var(--text-muted);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 3rem; }
-            section { padding: 80px 1.5rem; }
-            .timeline { padding-left: 1.5rem; }
-        }
+        .section-title { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; }
+        .glass-card { background: var(--bg-panel); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; margin: 1rem; }
     </style>
 </head>
 <body>
-    
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-outline" id="cursor-outline"></div>
-
-    <div class="cyber-grid"></div>
-
     <nav class="navbar">
-        <div class="logo">Pranit Pisal</div>
+        <div class="logo" id="nav-logo">PRANIT PISAL</div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="https://github.com/Wanted162/" target="_blank">GitHub</a></li>
         </ul>
     </nav>
 
     <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">sudo su - devops_engineer</div>
-            <h1>
-                Architecting Cloud <br>
-                <span class="hero-gradient">Infrastructure & Automation</span>
-            </h1>
-            <p class="hero-subtitle">
-                Deploying highly scalable, zero-trust cloud native applications across AWS & Azure.
-            </p>
-            
-            <div class="terminal glass-card" id="tilt-terminal">
-                <div class="terminal-header">
-                    <div class="terminal-dots">
-                        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
-                    </div>
-                    <div style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem;">root@pranit-vm:~#</div>
-                </div>
-                <div class="terminal-content" id="typed-text"></div>
-            </div>
+        <h1>Cloud Architecture & DevOps Automation</h1>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Specializing in Single-Tenant Isolation, CI/CD, and FinTech Security Compliance.</p>
+        <div class="terminal">
+            <div id="typed-text" style="font-family: var(--font-mono); color: var(--terminal-green);"></div>
         </div>
     </section>
 
-    <section id="experience">
-        <h2 class="section-title">Execution Log</h2>
-        <p class="section-subtitle">var professional_history = [ ... ]</p>
-        
-        <div class="timeline">
-            <div class="timeline-item glass-card tilt-element">
-                <div class="timeline-date">Feb 2026 – Present</div>
-                <div class="timeline-role">DevOps Engineer</div>
-                <div class="timeline-company">IRMAI | Remote</div>
-                <ul class="timeline-highlights">
-                    <li>Established multi-repository Git workflows mapping directly to UAT and Production environments.</li>
-                    <li>Orchestrated IaC deployments using Azure Bicep and GitLab CI/CD pipelines to automate provisioning of isolated, single-tenant Resource Groups.</li>
-                    <li>Managed secure credential injection using Kubernetes generic secrets and Azure Service Principals for automated deployments.</li>
-                    <li>Containerized Python FastAPI backend services with optimized Docker image caching and non-root execution, reducing cold-start latency by 30%.</li>
-                </ul>
-            </div>
-
-            <div class="timeline-item glass-card tilt-element">
-                <div class="timeline-date">Oct 2022 – July 2024</div>
-                <div class="timeline-role">Software Engineer</div>
-                <div class="timeline-company">Zymr Systems | Pune, India</div>
-                <ul class="timeline-highlights">
-                    <li>Built and optimized CI/CD pipelines using Jenkins and AWS CodePipeline, improving release reliability.</li>
-                    <li>Provisioned AWS infrastructure (EKS, EC2, IAM, VPC) utilizing custom Terraform modules for standard deployment consistency.</li>
-                    <li>Containerized applications with Docker and deployed workloads on Kubernetes (EKS) with rolling updates and autoscaling.</li>
-                    <li>Implemented robust infrastructure monitoring using CloudWatch, Prometheus, and Grafana for proactive observability.</li>
-                </ul>
-            </div>
-
-            <div class="timeline-item glass-card tilt-element">
-                <div class="timeline-date">Aug 2024 – Jan 2025</div>
-                <div class="timeline-role">Data Science Intern</div>
-                <div class="timeline-company">Access Million | Remote</div>
-                <ul class="timeline-highlights">
-                    <li>Cleaned and processed structured datasets for Machine Learning model development.</li>
-                    <li>Built predictive models, evaluated performance metrics, and performed EDA using Python and Tableau.</li>
-                </ul>
-            </div>
+    <section id="about">
+        <h2 class="section-title">Professional Profile</h2>
+        <div class="glass-card" style="max-width: 800px; margin: auto;">
+            <p>DevOps Engineer with 2+ years of experience engineering cloud-native backend services using Python, FastAPI, and Azure Container Apps[cite: 2]. Expert in Just-In-Time (JIT) cross-tenant access systems, infrastructure automation via Terraform/Bicep, and zero-trust security implementations for financial-grade applications[cite: 2, 3].</p>
         </div>
     </section>
-
-    <section id="skills">
-        <h2 class="section-title">Tech Stack</h2>
-        <p class="section-subtitle">Infrastructure && Automation Tools</p>
-        
-        <div class="skills-grid">
-            <div class="glass-card tilt-element">
-                <h3 style="color: var(--primary-glow); font-family: var(--font-mono); margin-bottom: 1rem;">[Cloud_&_Containers]</h3>
-                <div>
-                    <span class="skill-tag">AWS (EC2, EKS, VPC)</span>
-                    <span class="skill-tag">Azure (ACA, Entra ID)</span>
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">Kubernetes</span>
-                </div>
-            </div>
-            
-            <div class="glass-card tilt-element">
-                <h3 style="color: var(--secondary-glow); font-family: var(--font-mono); margin-bottom: 1rem;">[IaC_&_Pipelines]</h3>
-                <div>
-                    <span class="skill-tag">Terraform</span>
-                    <span class="skill-tag">Azure Bicep</span>
-                    <span class="skill-tag">GitLab CI/CD</span>
-                    <span class="skill-tag">Jenkins</span>
-                    <span class="skill-tag">GitHub Actions</span>
-                </div>
-            </div>
-            
-            <div class="glass-card tilt-element">
-                <h3 style="color: var(--primary-glow); font-family: var(--font-mono); margin-bottom: 1rem;">[Backend_&_Monitoring]</h3>
-                <div>
-                    <span class="skill-tag">Python / FastAPI</span>
-                    <span class="skill-tag">Bash Scripting</span>
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">Prometheus</span>
-                    <span class="skill-tag">Grafana</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="section-title">Architecture Buildouts</h2>
-        <p class="section-subtitle">System.out.println("Show me the code");</p>
-        
-        <div class="projects-grid">
-            <div class="glass-card tilt-element">
-                <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">Multi-Branch CI/CD Pipeline</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Enterprise-grade Jenkins pipeline with environment-specific deployment strategies, automated image promotion, and security compliance.</p>
-                <div>
-                    <span class="skill-tag">Jenkins</span> <span class="skill-tag">Docker</span> <span class="skill-tag">AWS</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Wanted162/devops-project.git" target="_blank">View on GitHub</a>
-                </div>
-            </div>
-
-            <div class="glass-card tilt-element">
-                <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">IaC EKS Platform</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">Complete infrastructure automation using Terraform for VPC, Kubernetes (EKS) clusters, and integrated Prometheus monitoring.</p>
-                <div>
-                    <span class="skill-tag">Terraform</span> <span class="skill-tag">EKS</span> <span class="skill-tag">Prometheus</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/Wanted162/trend-app.git" target="_blank">View on GitHub</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>System Online. Built by Pranit Pisal | pisalpranit1@gmail.com</p>
-    </footer>
 
     <script>
-        // Custom Cursor Logic
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorOutline = document.getElementById('cursor-outline');
-        
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            
-            // Add a slight delay to the outline for a fluid effect
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 150, fill: 'forwards' });
-        });
+        // Dynamic Logo
+        const logo = document.getElementById('nav-logo');
+        const roles = ["PRANIT PISAL", "DEVOPS ENGINEER", "CLOUD ARCHITECT"];
+        let roleIndex = 0;
+        setInterval(() => { roleIndex = (roleIndex + 1) % roles.length; logo.textContent = roles[roleIndex]; }, 3000);
 
-        // Hover effect for links
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                cursorOutline.style.width = '60px';
-                cursorOutline.style.height = '60px';
-                cursorOutline.style.borderColor = 'var(--primary-glow)';
-            });
-            link.addEventListener('mouseleave', () => {
-                cursorOutline.style.width = '40px';
-                cursorOutline.style.height = '40px';
-                cursorOutline.style.borderColor = 'var(--secondary-glow)';
-            });
-        });
-
-        // Terminal Typewriter Effect
-        const commands = [
-            "fetching cloud credentials...",
-            "[OK] Authenticated via IAM role",
-            "kubectl get pods -n production",
-            "NAME                        READY   STATUS    AGE",
-            "backend-fastapi-7f89d       1/1     Running   12h",
-            "frontend-vite-core-9x2q1    1/1     Running   12h",
-            "[SYSTEM] Architecture scalable and secure.",
-            "init portfolio.html..."
-        ];
-        
-        let commandIndex = 0;
-        let charIndex = 0;
-        const terminalElement = document.getElementById('typed-text');
-        
-        function typeWriter() {
-            if (commandIndex < commands.length) {
-                if (charIndex < commands[commandIndex].length) {
-                    terminalElement.innerHTML += commands[commandIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriter, 40);
+        // Terminal Effect
+        const commands = ["init infrastructure-config...", "[OK] AWS/Azure Cloud Sync", "[OK] GitLab CI/CD Pipeline Active", "status: OPEN TO OPPORTUNITIES"];
+        let cmdIdx = 0, charIdx = 0;
+        const term = document.getElementById('typed-text');
+        function type() {
+            if (cmdIdx < commands.length) {
+                if (charIdx < commands[cmdIdx].length) {
+                    term.innerHTML += commands[cmdIdx].charAt(charIdx);
+                    charIdx++;
+                    setTimeout(type, 30);
                 } else {
-                    terminalElement.innerHTML += '<br><span style="color: var(--text-muted)">root@pranit-vm:~# </span>';
-                    commandIndex++;
-                    charIndex = 0;
-                    setTimeout(typeWriter, 500);
+                    term.innerHTML += '<br>'; cmdIdx++; charIdx = 0;
+                    setTimeout(type, 400);
                 }
-            } else {
-                terminalElement.innerHTML += '<span class="cursor-blink"></span>';
-            }
+            } else { term.innerHTML += '<span class="cursor-blink"></span>'; }
         }
-        
-        setTimeout(typeWriter, 1000);
-
-        // Vanilla 3D Tilt Effect for Glass Cards
-        const tiltElements = document.querySelectorAll('.tilt-element');
-        
-        tiltElements.forEach(element => {
-            element.addEventListener('mousemove', (e) => {
-                const rect = element.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -10; // Max rotation 10deg
-                const rotateY = ((x - centerX) / centerX) * 10;
-                
-                element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                element.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-                element.style.transition = 'transform 0.5s ease';
-            });
-            
-            element.addEventListener('mouseenter', () => {
-                element.style.transition = 'none'; // Remove transition during hover for instant response
-            });
-        });
+        setTimeout(type, 1000);
     </script>
 </body>
 </html>
